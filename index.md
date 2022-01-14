@@ -1,8 +1,14 @@
-## Welcome to GitHub Pages
+## Welcome to the Grantham Score Calculator
 
-You can use the [editor on GitHub](https://github.com/christos-efthymiou/Grantham-Score-Calculator/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+The Grantham score is a score ranging from 5 to 215 which predicts how likely a missense mutation is to be damaging. The score theorizes that the more distant two amino acids are in terms of their chemical characteristics, the more likely it is for a mutation to be damaging. Therefore, a higher score corresponds to a higher likelihood of damage caused by a mutation [Grantham, 1974](https://pubmed.ncbi.nlm.nih.gov/4843792/). 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The scores have been compiled in a table, shown here: 
+
+
+
+However, when dealing with hundreds or thousands of mutations, it is not feasible to find these scores manually. Therefore, you can use this site to automatically calculate the score for each of your missense mutations. In the textbox below, enter each mutation in the format Arg86Lys on a separate line. In other words, the three letter code of the original amino acid, followed by the number amino acid in your protein, and the three letter code of the mutated amino acid. 
+
+
 
 ### Markdown
 
