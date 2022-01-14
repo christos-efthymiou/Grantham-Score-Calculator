@@ -9,3 +9,29 @@ The scores have been compiled in a table, shown here:
 However, when dealing with hundreds or thousands of mutations, it is not feasible to find these scores manually. Therefore, you can use this site to automatically calculate the score for each of your missense mutations. In the textbox below, enter each mutation in the format Arg86Lys on a separate line. In other words, the three letter code of the original amino acid, followed by the number amino acid in your protein, and the three letter code of the mutated amino acid. 
 
 <input type="text" id="name" name="name"/>
+
+```python
+import tkinter as tk
+from tkinter import ttk
+from tkinter import scrolledtext
+  
+  
+root = tk.Tk()
+  
+root.title("ScrolledText Widget Example")
+  
+ttk.Label(root, text="ScrolledText Widget Example",
+          font=("Times New Roman", 15)).grid(column=0, row=0)
+ttk.Label(root, text="Enter your comments :", font=("Bold", 12)).grid
+(column=0, row=1)
+  
+text_area = scrolledtext.ScrolledText(root, wrap=tk.WORD,
+                                      width=40, height=8,
+                                      font=("Times New Roman", 15))
+  
+text_area.grid(column=0, row=2, pady=10, padx=10)
+  
+# placing cursor in text area
+text_area.focus()
+root.mainloop()
+```
