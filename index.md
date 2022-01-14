@@ -8,7 +8,6 @@ The scores have been compiled in a table, shown here:
 
 However, when dealing with hundreds or thousands of mutations, it is not feasible to find these scores manually. Therefore, you can use this site to automatically calculate the score for each of your missense mutations. In the textbox below, enter each mutation in the format Arg86Lys on a separate line. In other words, the three letter code of the original amino acid, followed by the number amino acid in your protein, and the three letter code of the mutated amino acid. 
 
-<!DOCTYPE html>
 <html>
    <head>
       <title>HTML textarea Tag</title>
@@ -16,7 +15,7 @@ However, when dealing with hundreds or thousands of mutations, it is not feasibl
 
    <body>
       <form action = "/cgi-bin/hello_get.cgi" method = "get">
-         What improvements you want in College?
+         Enter mutations on separate lines with format Arg86Lys
          <br>
          <textarea rows = "5" cols = "60" name = "description">
             Enter details here...
