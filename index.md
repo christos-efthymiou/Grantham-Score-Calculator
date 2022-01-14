@@ -18,7 +18,6 @@ However, when dealing with hundreds or thousands of mutations, it is not feasibl
          Enter mutations on separate lines with format Arg86Lys
          <br>
          <textarea rows = "5" cols = "60" name = "description">
-            Enter details here...
          </textarea><br>
          <input type = "submit" value = "submit" />
       </form>
