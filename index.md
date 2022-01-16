@@ -14,19 +14,24 @@ However, when dealing with hundreds or thousands of mutations, it is not feasibl
    </head>
 
    <body>
-      <form action = "/cgi-bin/hello_get.cgi" method = "get">
+      <form id="form" action = "/cgi-bin/hello_get.cgi" method = "get">
          Enter mutations on separate lines with format Arg86Lys
          <br>
-         <textarea rows = "5" cols = "60" name = "description">
-         </textarea><br>
+         <textarea id="textareaId" rows = "5" cols = "60" name = "description"></textarea><br>
          <input type = "submit" value = "submit" />
       </form>
-      <script>
-         var lines = document.getElementById('textareaId').innerHTML.split('\n');
-for(var i = 0;i < lines.length;i++){
-    //code here using lines[i] which will give you each line
+      let form = document.getElementById("form");
+let data = {"Arg Lys":100}; // store data like this
+form.addEventListener("submit",function(e){
+e.preventDefault();
+var lines = document.getElementById('textareaId').value.split('\n');
+document.getElementById('textareaId').value = '';
+    for(var i = 0;i < lines.length;i++){
+   let val = lines[i].substring(0,3);
+   let lastval = lines[i].substring(lines[i].length - 3)
+   document.getElementById('textareaId').value += val+' '+lastval + ' - ' +data[val+' '+lastval]+'\n';
 }
-      </script>
+})
    </body>
 </html>
 
