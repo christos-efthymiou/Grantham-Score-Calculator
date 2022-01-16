@@ -20,6 +20,7 @@ However, when dealing with hundreds or thousands of mutations, it is not feasibl
          <textarea id="textareaId" rows = "5" cols = "60" name = "description"></textarea><br>
          <input type = "submit" value = "submit" />
       </form>
+      <script>
       let form = document.getElementById("form");
 let data = {"Arg Lys":100}; // store data like this
 form.addEventListener("submit",function(e){
@@ -32,6 +33,7 @@ document.getElementById('textareaId').value = '';
    document.getElementById('textareaId').value += val+' '+lastval + ' - ' +data[val+' '+lastval]+'\n';
 }
 })
+   <\script>
    </body>
 </html>
 
