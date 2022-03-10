@@ -1,5 +1,5 @@
 ## Welcome to the Grantham Score Calculator
-<meta name="google-site-verification" content="RJILNLJRGVOrAaiAR_FDtiAD3GHVaJiDXdc_pjF7MNg" />
+
 To calculate Grantham scores, visit the [Google Colab notebook here](https://colab.research.google.com/drive/19Qavi2gFNx9YF085CS7CGptR-BxEY70T?usp=sharing)
 
 The Grantham score is a score ranging from 5 to 215 which predicts how likely a missense mutation is to be damaging. The score theorizes that the more distant two amino acids are in terms of their chemical characteristics, the more likely it is for a mutation to be damaging. Therefore, a higher score corresponds to a higher likelihood of damage caused by a mutation [Grantham, 1974](https://pubmed.ncbi.nlm.nih.gov/4843792/). 
