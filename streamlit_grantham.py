@@ -12,7 +12,7 @@ st.sidebar.markdown("created by Christos Efthymiou https://www.linkedin.com/in/c
 
 #Add title and subtitle to the main interface of the app
 st.title("Grantham Score Calculator")
-st.markdown("To get the grantham score for your mutations, enter your mutations in the input box in the format A987E R47K L1009V (format is first aa_residue location_mutated aa SPACE repeat.). If you copy and paste from a column in Excel, it should automatically convert your mutations to be separated by a space (as is needed!). That's it!")
+st.markdown("To get the grantham score for your mutations, enter your mutations in the input box in the format A987E R47K L1009V (format is first_aa-number-mutated_aa SPACE repeat.). If you copy and paste from a column in Excel, it should automatically convert your mutations to be separated by a space (as is needed!). Press Enter and that's it!")
 
 mutations = st.text_input("Mutations separated by a space", '')
 no_digits = ''.join([i for i in mutations if not i.isdigit()])
