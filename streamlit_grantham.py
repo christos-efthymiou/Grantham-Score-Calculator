@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import io
-
+import matplotlib.pyplot as plt
 
 #Add sidebar to the app
 st.sidebar.markdown("### Grantham Score Calculator")
@@ -24,10 +24,12 @@ for i in mutations_list:
         value = dict.get(i)
         values.append(value)
 
-values_array = np.array(values)
+int_values = [ int(i) for i in values ]
+
+values_array = np.array(int_values)
 with io.BytesIO() as buffer:
     # Write array to buffer
-    np.savetxt(buffer, values_array, fmt = '%s', delimiter=",")
+    np.savetxt(buffer, values_array, delimiter=",")
     st.download_button(
         label="Download results as CSV",
         data = buffer, # Download buffer
@@ -37,3 +39,22 @@ with io.BytesIO() as buffer:
 
 for i in values: 
     st.text(i)
+
+with st.sidebar:
+    fig, ax = plt.subplots()
+    ax.hist(values_array, bins=10, edgecolor="black")
+    plt.xlabel('Grantham Score')
+    plt.ylabel('Counts')
+    plt.title('Grantham Score Histogram', fontsize = 18)
+    plt.xlim(5, 215)
+
+    st.pyplot(fig)
+    image_name = 'histogram.png'
+    plt.savefig(image_name,dpi=300)
+    with open(image_name, "rb") as img:
+        btn = st.download_button(
+            label="Download plot as png",
+            data=img,
+            file_name=image_name,
+            mime="image/png"
+        )
