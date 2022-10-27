@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 #Add sidebar to the app
 st.sidebar.markdown("### Grantham Score Calculator")
 st.sidebar.markdown("Welcome to my first app. I built this app using Streamlit to make it easier to obtain the Grantham amino acid mutation score. I hope you enjoy!")
-st.sidebar.markdown("created by Christos Efthymiou https://www.linkedin.com/in/christos-efthymiou/")
+st.sidebar.markdown("created by [Christos Efthymiou](https://www.linkedin.com/in/christos-efthymiou/)")
 
 #Add title and subtitle to the main interface of the app
 st.title("Grantham Score Calculator")
