@@ -1,7 +1,8 @@
 #Import Python Libraries
 import pandas as pd
 import streamlit as st
-
+import numpy as np
+import io
 
 
 #Add sidebar to the app
@@ -22,6 +23,17 @@ for i in mutations_list:
     if i in dict: 
         value = dict.get(i)
         values.append(value)
+
+values_array = np.array(values)
+with io.BytesIO() as buffer:
+    # Write array to buffer
+    np.savetxt(buffer, values_array, fmt = '%s', delimiter=",")
+    st.download_button(
+        label="Download results as CSV",
+        data = buffer, # Download buffer
+        file_name = 'grantham_scores.csv',
+        mime='text/csv'
+    ) 
 
 for i in values: 
     st.text(i)
