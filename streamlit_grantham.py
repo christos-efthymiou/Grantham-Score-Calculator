@@ -12,7 +12,7 @@ st.sidebar.markdown("created by [Christos Efthymiou](https://www.linkedin.com/in
 
 #Add title and subtitle to the main interface of the app
 st.title("Grantham Score Calculator")
-st.markdown("To get the grantham score for your mutations, enter your mutations in the input box in the format A987E R47K L1009V (format is first_aa-number-mutated_aa SPACE repeat.). If you copy and paste from a column in Excel, it should automatically convert your mutations to be separated by a space (as is needed!). Press Enter and that's it!")
+st.markdown("To get the grantham score for your mutations, enter your mutations in the input box in the format A987E R47K L1009V (format is first aa_residue location_mutated aa SPACE repeat.). If you copy and paste from a column in Excel, it should automatically convert your mutations to be separated by a space (as is needed!). That's it!")
 
 mutations = st.text_input("Mutations separated by a space", '')
 no_digits = ''.join([i for i in mutations if not i.isdigit()])
@@ -25,17 +25,29 @@ for i in mutations_list:
         values.append(value)
 
 int_values = [ int(i) for i in values ]
-
 values_array = np.array(int_values)
-with io.BytesIO() as buffer:
+
+col1, col2 = st.columns(2)
+with col1:
+   with io.BytesIO() as buffer:
     # Write array to buffer
-    np.savetxt(buffer, values_array, delimiter=",")
-    st.download_button(
-        label="Download results as CSV",
-        data = buffer, # Download buffer
-        file_name = 'grantham_scores.csv',
-        mime='text/csv'
-    ) 
+        np.savetxt(buffer, values_array, delimiter=",")
+        st.download_button(
+            label="Download results as CSV",
+            data = buffer, # Download buffer
+            file_name = 'grantham_scores.csv',
+            mime='text/csv'
+        ) 
+with col2: 
+    with io.BytesIO() as buffer2:
+    # Write array to buffer
+        np.savetxt(buffer2, values_array, delimiter=",", fmt='%i')
+        st.download_button(
+            label="Download results as txt",
+            data = buffer2, # Download buffer
+            file_name = 'grantham_scores.txt',
+            mime='text/csv'
+        )    
 
 for i in values: 
     st.text(i)
