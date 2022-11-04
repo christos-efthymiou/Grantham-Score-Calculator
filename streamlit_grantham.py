@@ -4,11 +4,12 @@ import streamlit as st
 import numpy as np
 import io
 import matplotlib.pyplot as plt
+import py3Dmol
+from stmol import showmol
+import re
 
 #Add sidebar to the app
-st.sidebar.markdown("### Grantham Score Calculator")
-st.sidebar.markdown("Welcome to my first app. I built this app using Streamlit to make it easier to obtain the Grantham amino acid mutation score. I hope you enjoy!")
-st.sidebar.markdown("created by [Christos Efthymiou](https://www.linkedin.com/in/christos-efthymiou/)")
+st.sidebar.markdown("### Histogram of Grantham Scores")
 
 #Add title and subtitle to the main interface of the app
 st.title("Grantham Score Calculator")
@@ -52,6 +53,7 @@ with col2:
 for i in values: 
     st.text(i)
 
+#Histogram Plot
 with st.sidebar:
     fig, ax = plt.subplots()
     ax.hist(values_array, bins=10, edgecolor="black")
@@ -70,3 +72,79 @@ with st.sidebar:
             file_name=image_name,
             mime="image/png"
         )
+
+#Visualize mutations on PDB files
+st.sidebar.markdown("### Visualize Mutations on PDB File")
+
+#Allow users to select a PDB code, but provide default value of 7KXY
+pdb_code = st.sidebar.text_input(
+        label="PDB Code",
+        value="7KXY",
+    )
+
+#Extract residue numbers from the mutations list entered by users previously 
+only_digits = re.findall(r'\d+', mutations)
+
+#Add the word All to the beginning of the residue numbers list to create 
+#an option to select all the residues at once 
+only_digits.insert(0,"All")
+
+#Provide ability to select one or more residues at a time, as well as All
+hl_resi_list = st.sidebar.multiselect("Select one or more options:",only_digits)
+
+#If a user selects the All option from multiselect, all residue numbers will be used 
+if "All" in hl_resi_list:
+    hl_resi_list = only_digits
+
+#Tell user to specify which chain from the PDB file should have its residues highlighted 
+hl_chain = st.sidebar.text_input(label="Select the relevant chain from the PDB file",value="A")
+#Provide user with option to have labels on residues or not 
+label_resi = st.sidebar.checkbox(label="Label Selected Residues", value=True)
+
+surf_transp = st.sidebar.slider("Surface Transparency", min_value=0.0, max_value=1.0, value=0.0)
+hl_color = st.sidebar.text_input(label="Highlight Color of Mutants",value="red")
+
+bb_color = st.sidebar.text_input(label="Protein Backbone Color",value="lightgrey")
+lig_color = st.sidebar.text_input(label="Ligand Color",value="white")
+
+st.markdown(f"## PDB [{pdb_code.upper()}](https://www.rcsb.org/structure/{pdb_code}) (Chain {hl_chain})")
+
+### Step 3) Py3Dmol
+
+width = 700
+height = 700
+
+cartoon_radius = 0.2
+stick_radius = 0.2
+
+view = py3Dmol.view(query=f"pdb:{pdb_code.lower()}", width=width, height=height)
+
+view.setStyle({"cartoon": {"style": "oval","color": bb_color,"thickness": cartoon_radius}})
+
+view.addSurface(py3Dmol.VDW, {"opacity": surf_transp, "color": bb_color},{"hetflag": False})
+
+view.addStyle({"elem": "C", "hetflag": True},
+                {"stick": {"color": lig_color, "radius": stick_radius}})
+
+view.addStyle({"hetflag": True},
+                    {"stick": {"radius": stick_radius}})
+
+for hl_resi in hl_resi_list:
+    view.addStyle({"chain": hl_chain, "resi": hl_resi, "elem": "C"},
+                    {"stick": {"color": hl_color, "radius": stick_radius}})
+
+    view.addStyle({"chain": hl_chain, "resi": hl_resi},
+                        {"stick": {"radius": stick_radius}})
+
+if label_resi:
+    for hl_resi in hl_resi_list:
+        view.addResLabels({"chain": hl_chain,"resi": hl_resi},
+        {"backgroundColor": "lightgray","fontColor": "black","backgroundOpacity": 0.5})
+
+### Step 4) Stmol
+
+showmol(view, height=height, width=width)
+
+#Info
+st.sidebar.markdown("Welcome to my first app. I built this app using Streamlit to make it easier to obtain the Grantham amino acid mutation score. I hope you enjoy!")
+st.sidebar.markdown("created by [Christos Efthymiou](https://www.linkedin.com/in/christos-efthymiou/)")
