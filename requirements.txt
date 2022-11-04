@@ -1,4 +1,4 @@
 matplotlib
 py3Dmol
-stmol==0.07
+stmol==0.0.7
 re
