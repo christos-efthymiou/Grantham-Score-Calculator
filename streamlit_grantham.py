@@ -32,7 +32,7 @@ col1, col2 = st.columns(2)
 with col1:
    with io.BytesIO() as buffer:
     # Write array to buffer
-        np.savetxt(buffer, values_array, delimiter=",")
+        np.savetxt(buffer, values_array, delimiter=",", fmt='%i')
         st.download_button(
             label="Download results as CSV",
             data = buffer, # Download buffer
