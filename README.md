@@ -9,4 +9,4 @@ This is extremely time consuming and impossible when evaluating hundreds of muta
 
 Therefore, I have created a Streamlit app so anyone can easily calculate the Grantham scores for missense mutations. You can access it here:
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)]((https://grantham-score-calculator-by-christos-efthymiou.streamlit.app/))
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](([https://grantham-score-calculator-by-christos-efthymiou.streamlit.app/](https://grantham-score-calculator-by-christos-efthymiou.streamlit.app/)https://grantham-score-calculator-by-christos-efthymiou.streamlit.app/))
