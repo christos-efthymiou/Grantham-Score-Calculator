@@ -7,6 +7,4 @@ This left individuals to search in a table to find the score for each amino acid
 
 This is extremely time consuming and impossible when evaluating hundreds of mutations.
 
-Therefore, I have created a Streamlit app so anyone can easily calculate the Grantham scores for missense mutations. You can access it here:
-
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](([https://grantham-score-calculator-by-christos-efthymiou.streamlit.app/](https://grantham-score-calculator-by-christos-efthymiou.streamlit.app/)https://grantham-score-calculator-by-christos-efthymiou.streamlit.app/))
+Therefore, I have created a Streamlit app so anyone can easily calculate the Grantham scores for missense mutations. You can access it here: https://grantham-score-calculator-by-christos-efthymiou.streamlit.app/
